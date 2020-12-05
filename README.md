@@ -6,6 +6,6 @@ Mais Ducoup le voici !
 
 
 
-### Tutos : 
+## Tutos : 
 
-* ###### [Installer des IP Failover sur des machines virtuelles chez-soi 😉](./OVH)
+* #### [Installer des IP Failover sur des machines virtuelles chez-soi 😉](./OVH)
