@@ -65,6 +65,14 @@ Une fois cette commande d'installée vous pouvez **redémarrer** avec la command
 
 Maintenant que notre kernel est prêt il nous reste plus qu'a utiliser un script déjà tout fait par la communauté de la toile !
 
+Ajoutons d'abord nos repos (pour Debian 10) :
+
+```bash
+sh -c "echo 'deb http://deb.debian.org/debian buster-backports main contrib non-free' > /etc/apt/sources.list.d/buster-backports.list"
+apt update
+```
+
+
 Voici les commandes à exécuter pour tout préparer et lancer notre installation :
 
 ```
