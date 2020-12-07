@@ -315,3 +315,4 @@ Je rajouterais d'autres infos ici au fur et à mesure des remarques qu'on me fer
 Merci d'avoir suivi ce tutoriel, espère que celui vous aura été utile (pour ma part sa m'a changé ma vie, j'ai déjà 16 ip ovh chez moi 😆, la limite :().
 Le but de mon site c'est tout ce tutoriel : des trucs utiles qui peuvent servir a tout le monde.
 
+Merci à [Mael](https://github.com/maelmagnien) d'avoir Patch certains bugs dans le tuto.
