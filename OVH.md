@@ -1,3 +1,5 @@
+
+
 J'ai toujours voulu avoir mes propres IP chez moi. Ras le bol d'ouvrir mes ports, de rediriger mon SSH 😡
 Et Ducoup ben vu que j'ai un truc stable qui marche au top je vais vous apprendre comment avoir des IP OVH chez soi 😉
 
@@ -44,11 +46,8 @@ Voici une petite liste des trucs à faire après avoir reçu notre service :
 
 Connectez-vous en SSH avec de super clients comme [Termius](https://termius.com/) (désolé la team [MobaXTerm](https://mobaxterm.mobatek.net/)) et commençons.
 
-Les commandes à faire :
-
 ```
 sudo su -
-apt update
 apt purge linux-image-$(uname -r)
 ```
 
@@ -60,6 +59,16 @@ apt install linux-image-amd64 linux-headers-amd64
 ```
 
 Une fois cette commande d'installée vous pouvez **redémarrer** avec la commande `reboot` et vous **reconnecter en SSH** pour continuer (n'oubliez pas le `sudo su -` 😶)
+
+On le met à jour :
+
+```
+apt update
+apt full-upgrade
+reboot
+```
+
+
 
 #### Installer WireGuard sur notre VPS
 
@@ -76,7 +85,7 @@ apt update
 Voici les commandes à exécuter pour tout préparer et lancer notre installation :
 
 ```
-apt install curl bash sudo wget resolvconf wireguard-tools wireguard-dkms wireguard -y
+apt install curl bash sudo wget resolvconf wireguard-tools wireguard-dkms dkms wireguard -y
 curl -O https://raw.githubusercontent.com/angristan/wireguard-install/master/wireguard-install.sh
 chmod +x wireguard-install.sh
 ./wireguard-install.sh
@@ -154,9 +163,12 @@ PostUP = xxxx
 PostDown = xxxx
 ```
 
-Puis sauvegardez le fichier.
+Puis sauvegardez le fichier. Et on relance WireGuard : 
 
-Puis sauvegardez le fichier.
+```
+systemctl stop wg-quick@wg0
+systemctl start wg-quick@wg0
+```
 
 Une fois les commandes terminées, il est possible que quelques erreurs soient survenues et est préférable de redémarrer le VPS.
 
@@ -231,7 +243,7 @@ root@s1-2-gra7:~#
 
 ici mon client est `wg0-client-MaVM.conf` mais vous devriez avoir un autre que vous avez définit juste avant.
 
-On va juste débrousailler quelques lignes dans celui-ci afin d'avoir un truc très propre.
+On va juste débroussailler quelques lignes dans celui-ci afin d'avoir un truc très propre.
 Ouvrons-le (`nano monprofil.conf`)
 
 ```
@@ -248,7 +260,12 @@ AllowedIPs = 0.0.0.0/0,::/0
 ```
 
 Je n'ai pas les même valeurs mais la forme du fichier est la même que vous. Ici, je vais retirer en haut `,fd42:42:42::2/128` (n'oubliez pas la virgule) car je n'ai pas besoin d'ipv6 et également en dessous `,::/0`
-On peut maintenant sauvegarder notre fichier et c'est bon on a notre profil qui est tout beaucoup tout propre.
+
+*Edit : On s'est pris plein d'attaques et on a trouvé une solution :3*
+
+Quand on se prenais des attaques DDOS, tout le Traffic des clients VPN passaient par l'IP principale du VPS : GRAVE ERREUR ! Si celle-ci se fais attaquer, alors tout le réseau est en panne. Pour cela, il vous suffit de modifier le Endpoint = `<ipvps>` par `<ipfailover>`.
+
+Une fois ceci fait, on peut maintenant sauvegarder notre fichier et c'est bon on a notre profil qui est tout beaucoup tout propre.
 
 Vous pouvez copier coller le contenu du fichier dans un éditeur de texte comme visual studio code et l'enregistrer sous .conf
 
