@@ -24,3 +24,4 @@ Alors, convaincu ? Maintenant, en ce qui en est des requirements y'a pas forcém
 ### On l'installe comment ?
 
 Alors déjà il va falloir se munir de l'iso sur leur [site internet](https://www.proxmox.com/en/downloads)
+![vova](img/proxmoxdl.png)
