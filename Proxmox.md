@@ -24,4 +24,40 @@ Alors, convaincu ? Maintenant, en ce qui en est des requirements y'a pas forcém
 ### On l'installe comment ?
 
 Alors déjà il va falloir se munir de l'iso sur leur [site internet](https://www.proxmox.com/en/downloads)
-![vova](img/proxmoxdl.png)
+On prends bien le **Proxmox Virtual Environment** et la version la plus récente sous forme d'iso (6.3 à l'heure actuelle)
+
+<img src="img/proxmoxdl.png" alt="vova" style="zoom: 67%;" />
+
+<img src="img/isoproxmox.png" alt="isoproxmox" style="zoom: 80%;" />
+
+
+
+<img src="img/proxmoxfilechoose.png" alt="Proxmox" style="zoom:80%;" />
+
+Une fois qu'on a récupéré notre ISO il va falloir créer notre clé USB d'installation depuis le logiciel [Rufus](https://rufus.ie) 
+Seulement attention, quand vous aller lancer le flash, n'oubliez pas de sélectionner **le disque en mode DD**
+
+![rufusdd](img\rufusdd.png)
+
+Une fois notre clé USB prête, on va pouvoir la brancher sur notre ordi (ou serveur) et démarrer dessus depuis le bios.
+
+<img src="img\proxmoxsetup.png" alt="proxmoxsetup" style="zoom: 50%;" />
+
+On accepte les conditions générales d'utilisation
+
+<img src="img\setup1.png" style="zoom: 50%;" />
+
+<img src="img\setup2.png" alt="setup2" style="zoom:50%;" />
+
+Juste au-dessus, il nous demande sur quel disque on va installer Proxmox. Ici, je vais faire un tutoriel pour un setup avec 1 seul disque. Normalement (si j'ai pas la flemme) vers la fin du tuto je vais montrer plein de trucs utiles sur Proxmox :3
+Bref, ducoup on séléctionne le bon disque et pas touche aux options, on laisse les trucs par défaut. Normalement pour une personne lambda on ne devrais pas avoir besoin de plus de choses. Puis on clique sur next.
+
+<img src="img\setup3.png" alt="setup3" style="zoom:50%;" />
+
+On est bien français de france ...
+
+<img src="img\setup4.png" alt="setup4" style="zoom: 67%;" />
+
+Ici, on est entrain de définir le mot de passe root. N'oubliez pas qu'on est sur un installateur linux et qu'il peut avoir des problèmes avec qwerty azerty.
+En dessous il nous demande notre email. Si plus tard vous configurez les email, il aura la possibilité de vous informer si la backup s'est bien passée etc. On met une vrai email si jamais mais ce n'est pas forcément important.
+
