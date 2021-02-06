@@ -114,3 +114,5 @@ Ici, on va d'abord cliquer sur **Refresh**, afin de rechercher les nouvelles mis
 ![proxmoxupdates5](img/proxmoxupdates5.png)
 
 Une fois ces mises à jour terminer, notre Proxmox est totalement à jour et on va pouvoir effectuer une petite visite. Si vous souhaitez, vous pouvez redémarrer si vous le souhaitez. On va s'occuper d'une petite visites des nombreuses fonctionnalités que nous offre proxmox.
+
+### Petite visite guidée de l'interface
