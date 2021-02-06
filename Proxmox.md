@@ -61,3 +61,56 @@ On est bien français de france ...
 Ici, on est entrain de définir le mot de passe root. N'oubliez pas qu'on est sur un installateur linux et qu'il peut avoir des problèmes avec qwerty azerty.
 En dessous il nous demande notre email. Si plus tard vous configurez les email, il aura la possibilité de vous informer si la backup s'est bien passée etc. On met une vrai email si jamais mais ce n'est pas forcément important.
 
+<img src="img\setup5.png" alt="setup5" style="zoom:67%;" />
+
+Ici, il a automatiquement détecté une interface sur laquelle est branchée notre câble réseau. Par défaut il risque de récupérer une IP par le DHCP.
+**Cette IP doit être fixe** et ne **changera pas** au cours du temps. Si automatiquement il a choisit une IP pas folle, choisissez plutôt un .250 ou quelque chose de simple à retenir.
+En ce qui en est des DNS, on laisse ceux qui sont proposés naturellement. Sinon vous pouvez toujours opter pour la [Solution Cloudflare](https://1.1.1.1) 1.1.1.1
+
+<img src="img\setup6.png" alt="setup6" style="zoom: 67%;" />
+
+On note tout ce qui est affiché, on vérifie puis on clique sur install pour qu'il commence l'installation. Il devrais (si on a coché la case) redémarrer automatiquement dès qu'il a fini.
+
+<img src="img\setupend.png" alt="setupend" style="zoom:50%;" />
+
+Hop, notre Proxmox viens de démarrer, on peut aller dessus depuis notre navigateur web. On peut partir de notre ordinateur il devrais se gérer tout seul, donc débranchez écran etc.
+
+![proxmoxlogin](img\proxmoxlogin.png)
+
+Et puis tadam ! Bienvenue sur Proxmox :o
+
+### Comment bien le configurer ?
+
+Quand Proxmox est installé, il n'as pas tout qu'est bien paramétré par défaut. On va déjà aller réparer nos mises à jour.
+Rendez vous sur le nom de votre node à gauche :
+
+![proxmoxupdates1](img\proxmoxupdates1.png)
+
+Une fois notre shell de lancé, on va pouvoir exécuter les commandes suivantes : 
+
+```
+rm /etc/apt/sources.list.d/pve-enterprise.list
+```
+
+![proxmoxupdates2](img\proxmoxupdates2.png)
+
+Puis ensuite on va rajouter les lignes suivantes dans `/etc/apt/sources.list` :
+
+```
+nano /etc/apt/sources.list
+(on rajoute les lignes suivantes :)
+deb http://download.proxmox.com/debian/pve buster pve-no-subscription
+```
+
+![proxmoxupdates3](img\proxmoxupdates3.png)
+
+Une fois cette ligne ajoutée, on peut sauvegarder le fichier à l'aide de CTRL + X, Y, et ENTRÉE.
+On peut maintenant cliquer sur Updates, dans la même catégorie où l'on a trouvé Shell.
+
+![proxmoxupdates4](img\proxmoxupdates4.png)
+
+Ici, on va d'abord cliquer sur **Refresh**, afin de rechercher les nouvelles mises à jour. Dès que TASK OK est affiché, on peut fermer la petite pop-up, puis cliquer sur Upgrade. Il va nous demander si oui ou non on veut procéder, on dis oui.
+
+![proxmoxupdates5](A:\Profil\Documents\GitHub\Tutos\img\proxmoxupdates5.png)
+
+Une fois ces mises à jour terminer, notre Proxmox est totalement à jour et on va pouvoir effectuer une petite visite. Si vous souhaitez, vous pouvez redémarrer si vous le souhaitez. On va s'occuper d'une petite visites des nombreuses fonctionnalités que nous offre proxmox.
