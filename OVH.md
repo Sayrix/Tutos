@@ -1,22 +1,29 @@
 
 
-J'ai toujours voulu avoir mes propres IP chez moi. Ras le bol d'ouvrir mes ports, de rediriger mon SSH 😡
-Et Ducoup ben vu que j'ai un truc stable qui marche au top je vais vous apprendre comment avoir des IP OVH chez soi 😉
+Hey !
 
-### 1 - Commençons avec un VPS OVH
+J'ai un serveur chez moi, et j'ai besoin d'IP...
+
+Grâce à mes **IP Failover**, j'évite de donner celle de ma box qui est vulnérable, et je donne celle **d'OVH** [protégée par leur petite protection DDOS](https://www.ovh.com/fr/anti-ddos/technologie-anti-ddos.xml).
+
+Si vous souhaitez faire la même chose que moi, vous êtes au bon endroit.
+
+C'est compatible Windows, Linux et tout autre étant donné que [WireGuard](https://www.wireguard.com) est un VPN d'Avenir qui est désormais [inclut dans beaucoup de kernels](https://www.nextinpact.com/lebrief/42075/11832-vpn---wireguard-passe-en-version-1-0-et-integre-le-noyau-linux-5-6).
+
+### 1 - Commençons par commander un VPS OVH
 
 Pourquoi j'ai choisi **OVH** ?
 
-Le triste gros avantage d'OVH c'est que c'est (à ma connaissance) le seul hébergeur français à proposer l'achat d'**IP Failover à** **2€50 à vie** (tant que le service reste actif).
+Le triste gros avantage d'OVH c'est que c'est (à ma connaissance) le seul hébergeur français à proposer l'achat d'**IP Failover à** **2€50 à vie** (tant que le service reste actif). Cela va nous permettre de réaliser de **sérieuses économies** au bout d'un an.
 
-Maintenant il faut également comparer un **VPS** et un **Public Cloud** : deux offres proposées par OVH pour notre utilisation.
+Maintenant il faut également comparer un **VPS** et une offre **Public Cloud** : deux offres proposées par OVH qui sont idéales pour notre utilisation.
 
-- L'avantage d'un [VPS](https://www.ovhcloud.com/fr/vps/compare/) c'est que les offres commencent directement à partir de **débits supérieurs à 100MB/S** : Si vous faites tourner un **RDP Windows** les téléchargements seront **limités** à ce débit.
+- L'avantage d'un [VPS](https://www.ovhcloud.com/fr/vps/compare/) c'est que les offres commencent directement à partir de **débits supérieurs à 100MB/S** : Si vous faites tourner un **RDP Windows** les téléchargements seront **limités** à ce débit. Cependant, la qualité du réseau sera tout aussi stable.
 - L'avantage d'un [Public Cloud](https://www.ovhcloud.com/fr/public-cloud/prices/#388) c'est qu'il est **très flexible**, **les prix sont très bas** et le débit est de **minimum 100MB/S** : Si vous souhaitez faire tourner **du web** ou du **serveur Minecraft**, ne nécessitant **pas trop de débit** mais seulement **du ping**.
 
 Voici un petit tableau des prix si vous avez besoin de comparer rapidement :
 
-| s1-2 (Public Cloud Sandbox) | VPS Value        | VPS Essential     | VPS Comfort       |
+| s1-2 (Public Cloud Sandbox) | VPS Value        | VPS Essential     | VPS Confort       |
 | --------------------------- | ---------------- | ----------------- | ----------------- |
 | 100 MB/S                    | 250 MB/S         | 500 MB/S          | 1 GB/S            |
 | 2.99€ HT (par mois)         | 5€ HT (par mois) | 10€ HT (par mois) | 20€ HT (par mois) |
@@ -24,12 +31,10 @@ Voici un petit tableau des prix si vous avez besoin de comparer rapidement :
 Je précise qu'on a **pas besoin de gros** **CPU** ou **RAM**, seulement de réseau car WireGuard est **très léger**.
 J'ai **personnellement choisi le tout premier public cloud** : *s1-2*
 
-Je précise qu'il est **nécessaire de posséder une clé SSH**. Je vous laisse la générer depuis [ce tutoriel](http://f4b1.com/securite/comment-creer-une-cle-ssh-publique-et-prive-sous-windows)
-
 ### 2 - Installons notre VPS
 
 Dans ce tutoriel, je vais utiliser **Debian 10**, cela peut changer certaines choses comme le login SSH ou autre, mais prenez le même que moi au moins on sera sûr d'avoir des choses identiques.
-⚠ **Utilisez Debian 10 pour être sûr d'être 100% compatible : Le tuto peut ne pas fonctionner ou bien manquer de repos sur d'autres distrib.**
+⚠ **Utilisez Debian 10 pour être sûr d'être 100% compatible : Le tuto peut ne pas fonctionner ou bien manquer de repos sur d'autres distrib.** ⚠ 
 
 Voici une petite liste des trucs à faire après avoir reçu notre service :
 
@@ -46,6 +51,8 @@ Voici une petite liste des trucs à faire après avoir reçu notre service :
 
 Connectez-vous en SSH avec de super clients comme [Termius](https://termius.com/) (désolé la team [MobaXTerm](https://mobaxterm.mobatek.net/)) et commençons.
 
+Vous avez normalement reçu par email les identifiants. Si vous avez choisit debian 10 (**ce qu'il faut choisir hein**) le login est `debian` et le mot de passe auto-généré.
+
 ```
 sudo su -
 apt purge linux-image-$(uname -r)
@@ -55,12 +62,17 @@ Ici, on retire tout les kernels installés sur notre VPS, si vous redémarrez sa
 On peut juste après installer le dernier kernel tout propre avec les commandes suivantes :
 
 ```
+apt update
 apt install linux-image-amd64 linux-headers-amd64
 ```
 
-Une fois cette commande d'installée vous pouvez **redémarrer** avec la commande `reboot` et vous **reconnecter en SSH** pour continuer (n'oubliez pas le `sudo su -` 😶)
+Une fois notre nouveau kernel d'installé, on peut redémarrer notre VPS avec la commande :
 
-On le met à jour :
+```
+reboot
+```
+
+On peut se reconnecter et le mettre à jour :
 
 ```
 apt update
@@ -68,7 +80,7 @@ apt full-upgrade
 reboot
 ```
 
-
+Une fois toutes ces commandes terminées, le VPS aura redémarré à la dernière version ! On est fin prêt pour continuer :)
 
 #### Installer WireGuard sur notre VPS
 
@@ -178,7 +190,7 @@ Maintenant il va falloir passer à la caisse. Achetons une IP Failover et lions 
 
 ###### Pour Public Cloud : 
 
-Rendez-vous dans la sections Failover IP sur l'espace public cloud, il vous proposera de créer un réseau (sans frais). Cela peut prendre jusqu'à 10 minutes. N'hésitez pas à actualiser la page, l'espace client est plutôt mou.
+Rendez-vous dans la sections Failover IP sur l'espace public cloud, il vous proposera de créer un réseau (sans frais). Cela peut prendre jusqu'à 10 minutes. -+N'hésitez pas à actualiser la page, l'espace client est plutôt mou.
 Une fois qu'on a notre réseau il vous proposera d'acheter des IP Failover dans la catégorie actions. (Liez la bien au bon service)
 Suivez les instructions, payez et une facture vous sera générée. Il faudra attendre jusqu'à 10 minutes (ou le lendemain si vous commandez tard le soir) avant d'avoir enfin reçu son IP.
 Une fois reçue, elle devrais apparaître dans la section IP Failover.
