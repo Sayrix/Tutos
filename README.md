@@ -9,3 +9,4 @@ Mais Ducoup le voici !
 ## Tutos : 
 
 * #### [Installer des IP Failover sur des machines virtuelles chez-soi 😉](./OVH)
+* #### [Comment Installer Proxmox ? (et petite visite de interface)](./Proxmox)
