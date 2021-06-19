@@ -166,3 +166,27 @@ Ici, il nous demande un email qui sera affiché comme le créateur des eggs expo
 ![Il nous demande l'URL de notre Pterodactyl](./img/pterodactyl6.png)
 
 Ici, on lui donne notre URL que l'on utilisera dans notre navigateur web. Il est nécessaire de préciser le https:// comme indiqué dans l'image au dessus, car nous allons ensuite générer les certificats SSL. Il n'est pas non plus nécessaire de rajouter un / à la fin.
+
+![On choisit le fuseau horaire de notre installation](./img/pterodactyl7.png)
+
+Ici, il nous demande le fuseau horaire PHP de notre installation. Si vous êtes en France, il faudra alors écrire `Europe/Paris`. Si vous êtes dans d'autres pays, vous pouvez consulter [la liste de PHP](https://www.php.net/manual/en/timezones.php).
+
+![On choisit Redis comme serveur de cache](./img/pterodactyl8.png)
+
+Ici, il nous demande quel type de serveur de cache on va utiliser pour notre Pterodactyl. Redis est parfait pour ce genre de situations, on va donc l'utiliser.
+
+![Nous allons utiliser redis pour se souvenir de nos sessions utilisateurs](./img/pterodactyl9.png)
+
+Ici, il nous demande quel type de manière nous allons utiliser pour se souvenir de nos sessions utilisateurs. Redis est également très bon pour faire ce genre d'actions, nous allons donc l'utiliser.
+
+![Ici il nous demande le serveur qui va mémoriser l'ordre des actions](./img/pterodactyl10.png)
+
+Ici, il nous demande le type de serveur qui va se souvenir des actions utilisateurs, nous allons également nous servir de redis.
+
+![On veut modifier en ligne](./img/pterodactyl11.png)
+
+Ici, il nous demande si on souhaite modifier certaines options via l'interface web. On choisit la simplicité et disons yes.
+
+![on touche a rien](./img/pterodactyl12.png)
+
+En ce qui en est des options pour redis, on laisse par défaut. Il n'y a pas de mot de passe, ce n'est qu'un serveur de cache local.
