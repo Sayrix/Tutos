@@ -8,7 +8,8 @@ Ducoup aujourd'hui on se retrouve pour un petit tuto afin d'installer le panel P
 
 ## 1 - Prérequis
 
-Comme d'habitude, mon tuto se basera sur une distro particulière. Pour avoir des résultats similaires voire identiques, il serait préférable que vous **utilisiez Ubuntu 20.04** pour ce tutoriel. C'est très similaire avec debian mais bon, chacun son avis, mais ubuntu c'est mieux.
+* Un nom de domaine (de préférence passé sur CloudFlare car c'est cool)
+* Ubuntu 20.04 (c'est mieux)
 
 Connectez-vous à votre VPS en SSH, et on va le mettre à jour pour bien commencer :
 
@@ -24,6 +25,19 @@ nano /etc/hosts
 
 ![Fichier Host Classique](./img/pterodactyl1.png)
 
-Une fois ceci fait on devrais avoir une base solide.
+Et vous pouvez ensuite rajouter la ligne suivante :
+
+```
+127.0.0.1       panel.monpanel.fr
+```
+
+En n'oubliant pas de remplacer panel.monpanel.fr par le nom de domaine de notre panel.
+Il sera également de créer une règle de en prenant pour exemple celle ci-dessous :
+
+![N'oubliez pas de remplacer les valeurs par les vôtres !!](./img/pterodactyl2.png)
+
+
+
+Une fois tout ceci effectué, on devrais avoir une base solide.
 Ce tutoriel va suivre la documentation officielle de pterodactyl, elle est suceptible d'être modifiée avec le temps et ce tuto peut ne plus très bien fonctionner. Cependant, j'essaierai de le mettre à jour afin qu'il fonctionne sur le long terme.
 
