@@ -22,7 +22,8 @@ Ensuite on va appliquer notre petit "patch" réseau en modifiant notre fichier /
 nano /etc/hosts
 ```
 
-![./img/pterodactyl1.png](pterodactyl1.png)
+![Fichier Host Classique](./img/pterodactyl1.png)
 
 Une fois ceci fait on devrais avoir une base solide.
 Ce tutoriel va suivre la documentation officielle de pterodactyl, elle est suceptible d'être modifiée avec le temps et ce tuto peut ne plus très bien fonctionner. Cependant, j'essaierai de le mettre à jour afin qu'il fonctionne sur le long terme.
+
