@@ -1,4 +1,4 @@
-# Installer Pterodactyl avec les IP Failover OVH
+# Installer Pterodactyl (avec les IP Failover OVH)
 
 C'est génial !
 Cela fait bientôt plus d'1 an que j'essaie de faire marcher [Pterodactyl](https://pterodactyl.io) avec mes IP failover chez moi, et je restais bloqué à une bête erreur de Traffic.
@@ -190,3 +190,47 @@ Ici, il nous demande si on souhaite modifier certaines options via l'interface w
 ![on touche a rien](./img/pterodactyl12.png)
 
 En ce qui en est des options pour redis, on laisse par défaut. Il n'y a pas de mot de passe, ce n'est qu'un serveur de cache local.
+
+Nous en avons finit avec le premier setup interactif. Si aucune erreur en rouge n'est apparue, on va pouvoir continuer.
+Il est maintenant temps de configurer la base de données que nous avons créé auparavant :
+
+```bash
+php artisan p:environment:database
+```
+
+![La configuration de la base de données](./img/pterodactyl13.png)
+
+Si vous avez créé votre base de données avec les commandes que nous avions fait au dessus, vous pouvez laisser les valeurs pré-remplies en appuyant sur entrée et entrer le mot de passe lors du Database Password.
+
+![Si il n'y aucune erreur c'est parfait](./img/pterodactyl14.png)
+
+Vous n'êtes pas censé avoir obtenu d'erreurs. Si c'est le cas, vous pouvez retry en disant yes. Normalement vous vous êtes trompé de mot de passe, sinon votre installation d'ubuntu peut ne pas être propre et il peut rester des traces d'autres bases de données. Il serait donc préférable que vous recommenciez avec une installation propre ce tutoriel.
+
+Nous n'allons pas configurer grand chose dans les mails :
+
+```bash
+php artisan p:environment:mail
+```
+
+![On touche pas grand chose](./img/pterodactyl15.png)
+
+Ici, je n'ai pas de serveur SMTP et je ne me servirais jamais des mails, je sélectionne donc la fonction mail de PHP. Je ne suis pas sûr qu'elle fonctionne mais dans tous les cas je n'ai aucune utilité des mails donc ce n'est pas important. Cependant, si vous avez besoin des mails pour vos clients, il serait préférable que vous configuriez un serveur SMTP.
+
+On peut maintenant initialiser notre base de données avec cette commande :
+
+```bash
+php artisan migrate --seed --force
+```
+
+![Il a finit de migrer ...](./img/pterodactyl16.png)
+
+On va voir toutes les entrées se migrer dans la base de données et vous devriez avoir le message ci-dessus. Si ce n'est pas le cas, vous pouvez avoir mal configuré votre base données MySQL avec les commandes qu'on a fait au dessus. Je vous conseil de remonter et de les refaire.
+Une fois que cette commande s'est bien passée, on va pouvoir continuer.
+
+Créons notre premier utilisateur (Administrateur de préférence) :
+
+```bash
+php artisan p:user:make
+```
+
+![pterodactyl17](./mg\pterodactyl17.png)
