@@ -1,4 +1,4 @@
-
+## ⚠ Une mise à niveau de ce tutoriel est nécessaire (pour l'arrivée de Debian 11, l'IPV6 et Wireguard nativement dans le kernel linux 5.10>). Ces sujets peuvent donc ne pas être complets et je vous conseille de les ignorer tant que cet avertissement persiste. ⚠
 
 Hey !
 
